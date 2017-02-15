@@ -17,3 +17,23 @@ IrIs(input, output);
 In this, you specify the targets and store them in a variable, then call the function. It is supposed to read the data written by the user in the input, then outputs in the specified output box.
 
 Since this is a JavaScript API, you can style it to your specifications. In your ```main.css``` file, you have to make a class for ```.conversation-pieceIrIs``` and style that. You will also have to style the input ```.conversation-piece```.
+
+Unfortunately, you also have to use the onSubmit property in your ```<form>``` element.
+
+<h3>Examples
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/from/to/IrIs.js"></script>
+    
+  </head>
+  <body>
+    <form onSubmit="yourFunction()">
+
+    </form>
+
+  </body>
+</html>
+```
