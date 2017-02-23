@@ -1,4 +1,4 @@
-function IrIs(input, output) {
+function IrIs(input, output, button) {
   'use strict'
   //Variables
   outflow = document.getElementById(output);
@@ -12,11 +12,20 @@ function IrIs(input, output) {
   function convElem(content, speaker) {
     crElemWithClass("conversation-piece" + speaker, content);
   }
-  switch (input.innerHTML) {
-    case "hi":
-      convElem("Greetings", "IrIs");
-      break;
-    default:
-      return "I couldn't understand.";
+  while (button.onMouseDown) {
+      switch (input.innerHTML) {
+        case "hi":
+        convElem("Greetings", "IrIs");
+        break;
+        case expression:
+
+          break;
+          case expression:
+
+            break;,
+        default:
+          return "I couldn't understand.";
+    }
   }
+
 }
