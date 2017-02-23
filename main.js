@@ -1,25 +1,22 @@
-function IrIs(input, output){
-  var d = document, w = window, i = input;
-  var Greetings = ["HELLO", "HI", "GREETINGS"];
-  var elem = d.createElement("span");
-  var makeElem = function(str) {
-    span.innerHTML = str;
+function IrIs(input, output) {
+  'use strict'
+  //Variables
+  outflow = document.getElementById(output);
+  function crElemWithClass(val, str) {
+    var elem = createElement("span");
+    var att = document.createAttribute("class");
+    att.value= val;
+    elem.setAttributeNode(att);
+    elem.innerHTML = str;
   }
-  function makeAttribute(target, attribute) {
-    target.addAttribute(attribute);
+  function convElem(content, speaker) {
+    crElemWithClass("conversation-piece" + speaker, content);
   }
-  input.value.toUpperCase;
-  String(i.value);
-  function makeConvers(speaker, message, type) {
-    return makeElem('<' + type + ' class="conversation-piece ' + speaker + '">' + message + '</' + type + '>')
-  }
-  switch (input.value) {
-    case Greetings:
-      makeConvers(IrIs, "Greetings", p);
+  switch (input.innerHTML) {
+    case "hi":
+      convElem("Greetings", "IrIs");
       break;
-    case ""
     default:
-      makeConvers(IrIs, "I couldn't understand that", p);
-
+      return "I couldn't understand.";
   }
 }
