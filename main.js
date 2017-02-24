@@ -1,6 +1,7 @@
 function IrIs(input, output, button) {
   'use strict'
   //Variables
+  var parseJSON = [];
   outflow = document.getElementById(output);
   function crElemWithClass(val, str) {
     var elem = createElement("span");
@@ -15,7 +16,8 @@ function IrIs(input, output, button) {
   while (button.onMouseDown) {
       switch (input.innerHTML) {
         case "hi":
-        convElem("Greetings", "IrIs");
+          convElem("Greetings", "IrIs");
+          parseJSON.push("Greeted":true);
         break;
         case expression:
 
@@ -26,6 +28,8 @@ function IrIs(input, output, button) {
         default:
           return "I couldn't understand.";
     }
+    var JSONParsed = JSON.stringify(parseJSON);
+    return JSONParsed;
   }
 
 }
