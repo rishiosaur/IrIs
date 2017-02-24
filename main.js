@@ -19,12 +19,6 @@ function IrIs(input, output, button) {
           convElem("Greetings", "IrIs");
           parseJSON.push("Greeted":true);
         break;
-        case expression:
-
-          break;
-          case expression:
-
-            break;,
         default:
           return "I couldn't understand.";
     }
