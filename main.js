@@ -2,7 +2,7 @@ function IrIs(input, output, button) {
   'use strict'
   //Variables
   var parseJSON = [];
-  outflow = document.getElementById(output);
+  var outflow = document.getElementById(output);
   function crElemWithClass(val, str) {
     var elem = createElement("span");
     var att = document.createAttribute("class");
