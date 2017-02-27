@@ -12,15 +12,17 @@ function IrIs(input, output, button) {
   }
   function convElem(content, speaker) {
     crElemWithClass("conversation-piece" + speaker, content);
+
   }
   while (button.onMouseDown) {
+      convElem(input.val, "self";)
       switch (input.innerHTML) {
         case "hi":
           convElem("Greetings", "IrIs");
           parseJSON.push("Greeted":true);
         break;
         default:
-          return "I couldn't understand.";
+          return "I couldn't understand.";ww
     }
     var JSONParsed = JSON.stringify(parseJSON);
     return JSONParsed;
