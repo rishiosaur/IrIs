@@ -1,7 +1,7 @@
 function IrIs(input, output, button) {
   'use strict'
   //Variables
-  var parseJSON = [];
+  var parseJSON = ["init":true,];
   var outflow = document.getElementById(output);
   function crElemWithClass(val, str) {
     var elem = createElement("span");
@@ -11,18 +11,18 @@ function IrIs(input, output, button) {
     elem.innerHTML = str;
   }
   function convElem(content, speaker) {
-    crElemWithClass("conversation-piece" + speaker, content);
-
+    var madeElem = crElemWithClass("conversation-piece" + speaker, content);
+    output.innerHTML += madeElem;
   }
-  while (button.onMouseDown) {
+  while (button.onMouseDown()) {
       convElem(input.val, "self";)
-      switch (input.innerHTML) {
+      switch (input.val()) {
         case "hi":
           convElem("Greetings", "IrIs");
           parseJSON.push("Greeted":true);
         break;
         default:
-          return "I couldn't understand.";ww
+          convElem("I couldn't understand", "IrIs");
     }
     var JSONParsed = JSON.stringify(parseJSON);
     return JSONParsed;
