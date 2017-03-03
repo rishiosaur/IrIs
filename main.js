@@ -24,14 +24,17 @@ function IrIs(input, output, button) {
   }
   //The random function
   function randString(case1, case2, case3) {
-    var rand = Math.random(0,3);
-    rand = Math.floor(rand);
+    var rand = Math.floor((Math.random() * 3) + 1);
     switch (rand) {
+      case 3:
+        return case3;
+      break;
       case 2:
-        return case2
-        break;
+        return case2;
+      break;
       default:
-        return case1
+        return case1;
+      break;
 
     }
   }
