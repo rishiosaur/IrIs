@@ -46,9 +46,12 @@ function IrIs(input, output, button) {
       //The switch block that evaluates the possibilities
       switch (input.val()) {
         case "HI" || "HELLO" || "GREETINGS":
-          convElem("Greetings", "IrIs");
+          convElem(randString("Hello there.", "", ""), "IrIs");
           ifParseJSON("Greeted":true, parseJSON);
         break;
+        case :
+
+          break;
         default:
           convElem("I couldn't understand", "IrIs");
     }
