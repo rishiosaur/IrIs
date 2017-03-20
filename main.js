@@ -1,7 +1,12 @@
 function IrIs(input, output, button) {
-  'use strict'
   //Variables
-
+  function start() {
+        // Initializes the client with the API key and the Translate API.
+        var translate = gapi.client.init({
+          'apiKey': 'AIzaSyAK2OhTm5DmTNdZRoODYjRkF9EuN_WHpJg',
+          'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/translate/v2/rest'],
+        });
+  var translateLangs = ["FILL IN LATER"];
   var parseJSON = ["init":true];
   var outflow = document.getElementById(output);
   function crElemWithClass(val, str) {
@@ -46,11 +51,39 @@ function IrIs(input, output, button) {
       //The switch block that evaluates the possibilities
       switch (input.val()) {
         case "HI" || "HELLO" || "GREETINGS":
-          convElem(randString("Hello there.", "", ""), "IrIs");
+          convElem(randString("Hello there.", "Greetings", "Hi!"), "IrIs");
           ifParseJSON("Greeted":true, parseJSON);
         break;
-        case :
+        case: "WHAT'S THE TIME?" || "GIVE ME THE TIME"
 
+          break;
+        case "TRANSLATE SOMETHING FOR ME" || "TRAN":
+          convElem("Ok, what language?", "IrIs");
+          if (input.val() === translateLangs) {
+            var firstLang = input.val();
+            convElem("Ok, what language would you like to translate it into?");
+            if (input.val() === translateLangs) {
+              var secondLang = input.val();
+              convElem("Alright, what would you like to translate?")
+              translate.then(function(){
+                return gapi.client.translations.list({
+                  q: input.val(),
+                  source: firstLang,
+                  target: secondLang
+                });
+              }).then(function(response){
+                convElem(response.result.data.translations[0].translatedText, "IrIs");
+              }, function(reason){
+                convElem('Error: ' + reason.result.error.message, "IrIs");
+              })
+            }
+          }
+          else {
+            convElem("I'm sorry, that language is not in my database.");
+          }
+          break;
+        case "SEND AN EMAIL TO SOMEONE" || "SEND AN EMAIL" || "CAN YOU SEND AN EMAIL?":
+          
           break;
         default:
           convElem("I couldn't understand", "IrIs");
