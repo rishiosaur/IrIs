@@ -83,8 +83,61 @@ function IrIs(input, output, button) {
           }
           break;
         case "SEND AN EMAIL TO SOMEONE" || "SEND AN EMAIL" || "CAN YOU SEND AN EMAIL?":
-          
+
           break;
+          function handleClientLoad() {
+          // Loads the client library and the auth2 library together for efficiency.
+          // Loading the auth2 library is optional here since `gapi.client.init` function will load
+          // it if not already loaded. Loading it upfront can save one network request.
+          gapi.load('client:auth2', initClient);
+        }
+
+        function initClient() {
+          // Initialize the client with API key and People API, and initialize OAuth with an
+          // OAuth 2.0 client ID and scopes (space delimited string) to request access.
+          gapi.client.init({
+              apiKey: 'AIzaSyAK2OhTm5DmTNdZRoODYjRkF9EuN_WHpJg',
+              discoveryDocs: ["https://people.googleapis.com/$discovery/rest?version=v1"],
+              clientId: '875052483911-81e4d5dmhq24p5dqoq7u5upkkqfbutff.apps.googleusercontent.com',
+              scope: 'profile'
+          }).then(function () {
+            // Listen for sign-in state changes.
+            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+            // Handle the initial sign-in state.
+            updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          });
+        }
+
+        function updateSigninStatus(isSignedIn) {
+          // When signin status changes, this function is called.
+          // If the signin status is changed to signedIn, we make an API call.
+          if (isSignedIn) {
+            makeApiCall();
+          }
+        }
+
+        function handleSignInClick(event) {
+          // Ideally the button should only show up after gapi.client.init finishes, so that this
+          // handler won't be called before OAuth is initialized.
+          gapi.auth2.getAuthInstance().signIn();
+        }
+
+        function handleSignOutClick(event) {
+          gapi.auth2.getAuthInstance().signOut();
+        }
+
+        function makeApiCall() {
+          // Make an API call to the People API, and print the user's given name.
+          var meApi = gapi.client.people.people.get({
+            resourceName: 'people/me'
+          });
+          meApi.then(function(response) {
+            convElem('Hello, ' + response.result.names[0].givenName, "IrIs");
+          }, function(reason) {
+            convElem('Error: ' + reason.result.error.message, "IrIs");
+          });
+        }
         default:
           convElem("I couldn't understand", "IrIs");
     }
